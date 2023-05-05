@@ -1,5 +1,4 @@
 """API serializers."""
-
 from django.contrib.contenttypes.models import ContentType
 from rest_framework import serializers
 
@@ -150,3 +149,10 @@ class DataComplianceSerializer(NautobotModelSerializer):
 
         model = DataCompliance
         fields = "__all__"
+
+
+class DataComplianceObjectSerializer(serializers.Serializer):
+    model = serializers.CharField()
+    id = serializers.UUIDField()
+    valid = serializers.BooleanField()
+    errors = serializers.DictField(child=serializers.ListField(child=serializers.CharField()))

@@ -1,5 +1,7 @@
 """API routes."""
 
+from django.urls import path, include
+
 from nautobot.core.api import OrderedDefaultRouter
 
 from nautobot_data_validation_engine.api import views
@@ -22,5 +24,6 @@ router.register("unique-rules", views.UniqueValidationRuleViewSet)
 
 router.register("data-compliance", views.DataComplianceAPIView)
 
+router.register(r"validate/(?P<model>[^/]+)", views.DataComplianceObjectAPIView, "validate")
 
 urlpatterns = router.urls
